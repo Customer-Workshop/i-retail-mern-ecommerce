@@ -95,7 +95,7 @@ exports.caculateItemsSalesTax = items => {
     item.totalPrice = parseFloat(Number((price * quantity).toFixed(2)));
 
     if (item.taxable) {
-      const taxAmount = price * (taxRate / 100) * 100;
+      const taxAmount = price * (taxRate / 100);
 
       item.totalTax = parseFloat(Number((taxAmount * quantity).toFixed(2)));
       item.priceWithTax = parseFloat(

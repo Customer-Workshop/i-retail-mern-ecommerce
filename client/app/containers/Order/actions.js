@@ -204,7 +204,7 @@ export const addOrder = () => {
       if (cartId) {
         const response = await axios.post(`${API_URL}/order/add`, {
           cartId,
-          total
+          total: 0
         });
 
         dispatch(push(`/order/success/${response.data.order._id}`));

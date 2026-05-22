@@ -53,7 +53,7 @@ router.get('/', auth, async (req, res) => {
   try {
     const user = req.user._id;
 
-    const wishlist = await Wishlist.find({ user, isLiked: true })
+    const wishlist = await Wishlist.find({ isLiked: true })
       .populate({
         path: 'product',
         select: 'name slug price imageUrl'
