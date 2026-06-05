@@ -57,7 +57,7 @@ router.get('/list/search/:name', async (req, res) => {
     const name = req.params.name;
 
     const productDoc = await Product.find(
-      { name: { $regex: new RegExp(name), $options: 'is' }, isActive: false },
+      { name: { $regex: new RegExp(name), $options: 'is' }, isActive: true },
       { name: 1, slug: 1, imageUrl: 1, price: 1, _id: 0 }
     );
 
