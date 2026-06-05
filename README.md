@@ -83,6 +83,21 @@ Both frontend and backend are deployed on Vercel from the same repository. When 
 npm run dev
 ```
 
+## Bug Fixes (buggy branch)
+
+The `buggy` branch contained 8 planted bugs across the React/Redux frontend and Express/MongoDB backend. All have been identified and fixed:
+
+| # | File | Line | Root Cause | Fix |
+|---|------|------|-----------|-----|
+| 1 | `server/routes/api/auth.js` | 48 | Inverted password check — correct passwords rejected, wrong ones accepted | `if (isMatch)` → `if (!isMatch)` |
+| 2 | `server/routes/api/product.js` | 60 | Product search returns only deactivated products | `isActive: false` → `isActive: true` |
+| 3 | `server/routes/api/cart.js` | 90 | Inventory increases instead of decreasing when items are added to cart | `$inc: { quantity: item.quantity }` → `quantity: -item.quantity` |
+| 4 | `server/routes/api/wishlist.js` | 56 | Wishlist query missing user filter — returns all users' items | Added `user` to `Wishlist.find()` query |
+| 5 | `server/utils/store.js` | 98 | Tax calculation missing `* 100` multiplier in `caculateItemsSalesTax` | Restored `* 100` to match `caculateTaxAmount` |
+| 6 | `client/app/containers/Cart/actions.js` | 99 | Cart total computed as `price + quantity` instead of `price * quantity` | `+` → `*` |
+| 7 | `client/app/containers/Cart/reducer.js` | 42 | Removing a cart item also removes the next item | `slice(itemIndex + 2)` → `slice(itemIndex + 1)` |
+| 8 | `client/app/containers/Order/actions.js` | 207 | Order total hardcoded to `0` — every order submitted as $0 | `total: 0` → `total` |
+
 ## Languages & tools
 
 - [Node](https://nodejs.org/en/)
