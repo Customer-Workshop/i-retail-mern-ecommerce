@@ -96,7 +96,7 @@ export const calculateCartTotal = () => {
     let total = 0;
 
     cartItems.map(item => {
-      total += item.price + item.quantity;
+      total += item.price * item.quantity;
     });
 
     total = parseFloat(total.toFixed(2));
