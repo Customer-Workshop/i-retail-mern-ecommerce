@@ -39,7 +39,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartItems: [
           ...state.cartItems.slice(0, itemIndex),
-          ...state.cartItems.slice(itemIndex + 2)
+          ...state.cartItems.slice(itemIndex + 1)
         ]
       };
 
