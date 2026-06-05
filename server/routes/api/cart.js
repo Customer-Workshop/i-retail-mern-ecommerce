@@ -87,7 +87,7 @@ const decreaseQuantity = products => {
     return {
       updateOne: {
         filter: { _id: item.product },
-        update: { $inc: { quantity: item.quantity } }
+        update: { $inc: { quantity: -item.quantity } }
       }
     };
   });
